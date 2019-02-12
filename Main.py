@@ -34,8 +34,8 @@ class BYRBT(object):
             'https': 'https://127.0.0.1:1080',
             'http': 'http://127.0.0.1:1080'
         }
-        self.username = 'username',
-        self.password = 'password',
+        self.username = 'yjw981213',
+        self.password = 'yjw3616807',
         self.return_to = 'https://bt.byr.cn'
         self.load_path = 'D:\Software\pythonload'  # 存放图片路径
 
