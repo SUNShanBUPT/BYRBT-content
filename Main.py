@@ -42,13 +42,13 @@ class BYRBT(object):
     def login(self):
         hash = self.getimagehash()
         self.downloadimg(hash)
-        imagestring=input("input string:")
-        # imagestring=self.imagestring()
+        imagestring = input("input string:")  # 人工输入验证码
+        # imagestring=self.imagestring()# 自动识别验证码
         # 构造请求体
         data = {
             'username': self.username,
             'password': self.password,
-            'imagestring':imagestring,
+            'imagestring': imagestring,
             'imagehash': hash,
         }
         se.post(self.login_url, data=data, headers=self.headers)
