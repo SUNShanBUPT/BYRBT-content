@@ -62,13 +62,13 @@ class BYRBT(object):
         with open('D:\\Software\\pythonload\\' + 'loginsoup.html', 'w', encoding='utf-8') as f:
             f.write(loginsoup.prettify())
             imagehash = loginsoup.find("input", type="hidden")
-            print(imagehash["value"])
+            #print(imagehash["value"])
             imageurl=self.main_url+"/image.php?action=regimage&imagehash="+str(imagehash["value"])
-            print(imageurl)
+            #print(imageurl)
             img = requests.get(imageurl, headers=self.headers, proxies=self.proxies)
             with open('D:\\Software\\pythonload\\' + 'image.png', 'wb') as f:  # 图片要用b,对text要合法化处理
                 f.write(img.content)  # 保存图片
-            print("Finish")
+            print("Finish download image")
 
 
     def imagestring(self):
@@ -108,3 +108,4 @@ class BYRBT(object):
 if __name__ == '__main__':
     byrbt = BYRBT()
     byrbt.downloadimg()
+    byrbt.imagestring()
