@@ -100,14 +100,14 @@ class BYRBT(object):
         # r_json=json.loads(r.text)
         # result=r_json["words_result"]
         # print(result)
-        world = re.findall('"words": "(.*?)"}', str(r.text), re.S)
-        for each in world:
+        words = re.findall('"words": "(.*?)"}', str(r.text), re.S)
+        for each in words:
             print(each)
-            last = re.sub('[^a-zA-Z_0-9]', '', each)
+            last = re.sub('[^a-zA-Z_0-9]', '', each)  # 仅显示识别出的英文与数字
             print(last)
         f.close()
         print(len(last))
-        if len(last) == 6:
+        if len(last) == 6:  # 验证码识别验证
             return last
         else:
             sys.exit()
