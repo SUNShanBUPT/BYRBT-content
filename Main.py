@@ -5,11 +5,10 @@ import base64
 import re
 import json
 import sys
-import time
 
 se = requests.Session()  # 模拟登陆
 requests.adapters.DEFAULT_RETRIES = 15
-se.mount('http://', HTTPAdapter(max_retries=3))  # 重联
+se.mount('http://', HTTPAdapter(max_retries=3))  # 重连
 se.mount('https://', HTTPAdapter(max_retries=3))
 
 
@@ -24,7 +23,6 @@ class BYRBT(object):
             # 'path':'/login.php',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            # 'cookie':'_ga=GA1.2.388369012.1549942748; _gid=GA1.2.374492651.1549942748; _gat=1',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
                           ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
             # 'X-Requested-With': 'XMLHttpRequest'
@@ -85,14 +83,11 @@ class BYRBT(object):
         access_token = content_json['access_token']
         # print(access_token)
         url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + access_token  # accurate_basic
-        headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-        }
         # img本地图片
         f = open('D:\\Software\\pythonload\\' + 'image.png', 'rb')  # 二进制方式打开图文件
         img = base64.b64encode(f.read())
         body = {
-            # "url":"https://img-blog.csdn.net/2018060214171639"
+            # "url":"https://img-blog.csdn.net/2018060214171639"  # 以url方式获取
             "image": img
         }
         r = requests.post(url, data=body)
@@ -120,7 +115,6 @@ class BYRBT(object):
 
 if __name__ == '__main__':
     byrbt = BYRBT()
-    # byrbt.downloadimg()
     # print(byrbt.imagestring())
     byrbt.login()
     byrbt.check()
